@@ -52,6 +52,21 @@ int main(){
 		else if (ui.getActiveMenu() == UI::MenuIndex::SearchByStudent) {
 			UI::placeCursorAt(0, ui.getYScreenOffset() + 4);
 
+			UI::setColor(UI::Gray);
+			cout << " У цьому розділі можна знайти кваліфікаційну роботу за ПІБ автора" << endl;
+			cout << " Натиснить ";
+			UI::setColor(UI::WhiteOnBlue);
+			cout << "[Enter]";
+			UI::setColor(UI::Gray);
+			cout << " - щоб почати пошук, або ";
+			UI::setColor(UI::WhiteOnBlue);
+			cout << "[ESC]";
+			UI::setColor(UI::Gray);
+			cout << " - щоб повернутись в головне меню" << endl;
+		}
+		else if (ui.getActiveMenu() == UI::MenuIndex::SearchStudentForm) {
+			UI::placeCursorAt(0, ui.getYScreenOffset() + 4);
+
 			string query;
 			cout << " Введіть ПІБ автора для пошука робіт: ";
 			getline(cin, query);
@@ -59,15 +74,28 @@ int main(){
 			vector<Models::QualifyingWork> results = qfManager.searchByStudent(query);
 			if (results.empty()) {
 				UI::setColor(UI::Red);
-				cout << " Робіт за введеним пошуковим запитом не знайдено";
+				cout << " Співпадінь не знайдено.";
 			}
 			else {
 				ui.drawTable(ui.defaultTableHead, qfManager.toMap(results));
 			}
 		}
-		else if (ui.getActiveMenu() == UI::MenuIndex::SearchByManager) {
+		else if (ui.getActiveMenu() == UI::MenuIndex::SearchByTeacher) {
 			UI::placeCursorAt(0, ui.getYScreenOffset() + 4);
 
+			UI::setColor(UI::Gray);
+			cout << " У цьому розділі можна знайти кваліфікаційну роботу за ПІБ керівника" << endl;
+			cout << " Натиснить ";
+			UI::setColor(UI::WhiteOnBlue);
+			cout << "[Enter]";
+			UI::setColor(UI::Gray);
+			cout << " - щоб почати пошук, або ";
+			UI::setColor(UI::WhiteOnBlue);
+			cout << "[ESC]";
+			UI::setColor(UI::Gray);
+			cout << " - щоб повернутись в головне меню" << endl;
+		}
+		else if (ui.getActiveMenu() == UI::MenuIndex::SearchTeacherForm) {
 			string query;
 			cout << " Введіть ПІБ керівника для пошука робіт: ";
 			getline(cin, query);
@@ -75,7 +103,7 @@ int main(){
 			vector<Models::QualifyingWork> results = qfManager.searchByTeacher(query);
 			if (results.empty()) {
 				UI::setColor(UI::Red);
-				cout << " Робіт за введеним пошуковим запитом не знайдено";
+				cout << " Співпадінь не знайдено.";
 			}
 			else {
 				ui.drawTable(ui.defaultTableHead, qfManager.toMap(results));

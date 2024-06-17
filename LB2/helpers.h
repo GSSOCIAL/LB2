@@ -15,8 +15,10 @@ namespace UI {
 		ViewDb = 3,
 		ManageKeywords = 4,
 		SearchByStudent = 5,
-		SearchByManager = 6,
-		AddRecordForm = 7
+		SearchByTeacher = 6,
+		AddRecordForm = 7,
+		SearchStudentForm = 8,
+		SearchTeacherForm = 9
 	};
 	/// <summary>
 	/// 

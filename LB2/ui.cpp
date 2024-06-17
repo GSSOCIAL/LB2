@@ -37,6 +37,11 @@ namespace UI {
 			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
 			resetColor();
 			break;
+		case UI::ManageKeywords:
+			drawHeader("Додати ключові слова");
+			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
+			resetColor();
+			break;
 		case UI::ManageDb:
 		case UI::AddRecordForm:
 			drawHeader("Поповнити базу даних");
@@ -52,11 +57,13 @@ namespace UI {
 			cout << " - Повернутись до головного меню ";
 			resetColor();
 			break;
-		case UI::SearchByManager:
+		case UI::SearchByTeacher:
+		case UI::SearchTeacherForm:
 			drawHeader("Пошук робіт за прізвищем керівника");
 			resetColor();
 			break;
 		case UI::SearchByStudent:
+		case UI::SearchStudentForm:
 			drawHeader("Пошук робіт за прізвищем автора");
 			resetColor();
 			break;
@@ -135,6 +142,12 @@ namespace UI {
 		}
 		else if (selectedMenuIndex == UI::ManageDb) {
 			selectedMenuIndex = UI::MenuIndex::AddRecordForm;
+		}
+		else if (selectedMenuIndex == UI::SearchByStudent) {
+			selectedMenuIndex = UI::MenuIndex::SearchStudentForm;
+		}
+		else if (selectedMenuIndex == UI::SearchByTeacher) {
+			selectedMenuIndex = UI::MenuIndex::SearchTeacherForm;
 		}
 	};
 
