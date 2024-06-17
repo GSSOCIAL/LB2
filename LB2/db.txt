@@ -1,0 +1,2 @@
+group:АКТСІ-23-1;student:Матвій;teacher:;title:Привітсвіт;year:2024;
+group:АКТСІ-23-1;student:Картмазов;teacher:Сезонова;title:Всесвіт;year:2024;
