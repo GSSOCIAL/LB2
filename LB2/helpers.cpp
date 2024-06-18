@@ -13,7 +13,7 @@ namespace UI {
 	};
 
 	void resetColor() {
-		setColor(UI::White);
+		setColor(UI::ConsoleColor::White);
 	};
 }
 

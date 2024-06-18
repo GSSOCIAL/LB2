@@ -6,19 +6,29 @@
 using namespace std;
 
 namespace Models {
+	/// <summary>
+	/// Кваліфікаційна робота
+	/// </summary>
 	struct QualifyingWork {
+		/// <summary>
+		/// ПІБ викладача
+		/// </summary>
 		string teacherName;
 		int year;
+		/// <summary>
+		/// Академічна група
+		/// </summary>
 		string group;
+		/// <summary>
+		/// ПІБ Автора
+		/// </summary>
 		string studentName;
+		/// <summary>
+		/// Назва роботи
+		/// </summary>
 		string title;
 
 		int primaryKey;
-
-		friend ostream& operator<<(ostream& stream, const QualifyingWork& row) {
-			stream << "";
-			return stream;
-		};
 
 		map<string, string> getPair() {
 			map<string, string> pair;

@@ -6,7 +6,7 @@
 using namespace std;
 namespace UI {
 	/// <summary>
-	/// 
+	/// Індекси розділів програми
 	/// </summary>
 	enum MenuIndex {
 		Home = 0,
@@ -18,10 +18,11 @@ namespace UI {
 		SearchByTeacher = 6,
 		AddRecordForm = 7,
 		SearchStudentForm = 8,
-		SearchTeacherForm = 9
+		SearchTeacherForm = 9,
+		ManageKeywordsForm = 10
 	};
 	/// <summary>
-	/// 
+	/// Індекси кольорів консолі
 	/// </summary>
 	enum ConsoleColor {
 		LightGray = 7,
@@ -32,26 +33,28 @@ namespace UI {
 		White = 15,
 		WhiteOnBlue = 23
 	};
-
 	/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-	void placeCursorAt(int x, int y);
-
-	/// <summary>
-	/// 
+	/// Встановлює курсор консолі на заданий рядок, колонку
 	/// </summary>
-	/// <param name="color"></param>
-	void setColor(UI::ConsoleColor color);
-
+	/// <param name="x">Координата x (знак)</param>
+	/// <param name="y">Координата y (рядок)</param>
+	void placeCursorAt(int x, int y);
 	/// <summary>
-	/// 
+	/// Встановлює колір консолі
+	/// </summary>
+	/// <param name="color">Колір</param>
+	void setColor(UI::ConsoleColor color);
+	/// <summary>
+	/// Повертає колір консолі до стандартного
 	/// </summary>
 	void resetColor();
 };
 
 namespace String {
+	/// <summary>
+	/// Кількість символів char*
+	/// </summary>
+	/// <param name="input"></param>
+	/// <returns>Кількість символів</returns>
 	int getCharLength(const char* input);
 };

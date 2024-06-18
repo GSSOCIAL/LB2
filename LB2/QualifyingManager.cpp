@@ -44,6 +44,7 @@ namespace Controllers {
 		};
 		return write(data);
 	};
+
 	vector<Models::QualifyingWork> QualifyingManager::getList(){
 		return list;
 	};
@@ -67,6 +68,7 @@ namespace Controllers {
 		}
 		return results;
 	};
+
 	vector<Models::QualifyingWork> QualifyingManager::searchByStudent(string query) {
 		vector<Models::QualifyingWork> results;
 		for (Models::QualifyingWork row : getList()) {

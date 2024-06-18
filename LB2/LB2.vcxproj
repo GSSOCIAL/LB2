@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="file.cpp" />
     <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="KeywordsManager.cpp" />
     <ClCompile Include="locale.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="navigation.cpp" />
@@ -31,8 +32,11 @@
   <ItemGroup>
     <ClInclude Include="file.h" />
     <ClInclude Include="helpers.h" />
+    <ClInclude Include="KeywordsManager.h" />
     <ClInclude Include="locale.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="models\AnalizeResult.h" />
+    <ClInclude Include="models\Keyword.h" />
     <ClInclude Include="models\QualifyingWork.h" />
     <ClInclude Include="navigation.h" />
     <ClInclude Include="QualifyingManager.h" />

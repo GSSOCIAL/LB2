@@ -1,0 +1,5 @@
+value:світ;
+value:привіт;
+value:привіт;
+value:нове-слово;
+value:нове;

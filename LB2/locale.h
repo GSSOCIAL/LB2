@@ -7,6 +7,6 @@
 #include "windows.h"
 
 /// <summary>
-/// 
+/// Додає підтримку української мови до консолі
 /// </summary>
 void setLanguageSupport();

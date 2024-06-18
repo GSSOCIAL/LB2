@@ -8,8 +8,11 @@ namespace UI {
 
 	void Controller::drawMenu() {
 		clear();
+		
+		//В залежності від обраного розділу меню - будемо виводити різний зміст
 		switch (selectedMenuIndex) {
-		case UI::Home:
+		//Головне меню
+		case UI::MenuIndex::Home:
 			drawHeader("Головне меню");
 			drawVerticalNavigation(
 				xScreenOffset,
@@ -22,48 +25,60 @@ namespace UI {
 				"Пошук робіт за прізвищем керівника"
 				, NULL);
 			resetColor();
+
 			UI::placeCursorAt(xScreenOffset, yScreenOffset+1);
-			UI::setColor(UI::WhiteOnBlue);
+			UI::setColor(UI::ConsoleColor::WhiteOnBlue);
 			cout << "[Стрілки вгору - вниз]";
-			UI::setColor(UI::Gray);
+			UI::setColor(UI::ConsoleColor::Gray);
 			cout << " - Навігація по меню ";
-			UI::setColor(UI::WhiteOnBlue);
+			UI::setColor(UI::ConsoleColor::WhiteOnBlue);
 			cout << "[Enter]";
-			UI::setColor(UI::Gray);
+			UI::setColor(UI::ConsoleColor::Gray);
 			cout << " - Перехід до розділу меню";
 			break;
-		case UI::Analize:
+		//Розділ аналізу назви
+		case UI::MenuIndex::Analize:
 			drawHeader("Аналіз назви кваліфікаційної роботи");
 			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
+			UI::setColor(UI::ConsoleColor::WhiteOnBlue);
+			cout << "[ESC]";
+			UI::setColor(UI::ConsoleColor::Gray);
+			cout << " - Повернутись до головного меню ";
 			resetColor();
 			break;
-		case UI::ManageKeywords:
+		//Розділ створення ключових слів
+		case UI::MenuIndex::ManageKeywords:
+		case UI::MenuIndex::ManageKeywordsForm:
 			drawHeader("Додати ключові слова");
 			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
 			resetColor();
 			break;
-		case UI::ManageDb:
-		case UI::AddRecordForm:
+		//Розділ створення записів бази кваліфікаційних робіт
+		case UI::MenuIndex::ManageDb:
+		case UI::MenuIndex::AddRecordForm:
 			drawHeader("Поповнити базу даних");
 			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
 			resetColor();
 			break;
-		case UI::ViewDb:
+		//Перегляд бази квал. робіт
+		case UI::MenuIndex::ViewDb:
 			drawHeader("Перегляд бази даних кафедри");
 			UI::placeCursorAt(xScreenOffset, yScreenOffset + 1);
-			UI::setColor(UI::WhiteOnBlue);
+			UI::setColor(UI::ConsoleColor::WhiteOnBlue);
 			cout << "[ESC]";
-			UI::setColor(UI::Gray);
+			UI::setColor(UI::ConsoleColor::Gray);
 			cout << " - Повернутись до головного меню ";
 			resetColor();
 			break;
-		case UI::SearchByTeacher:
-		case UI::SearchTeacherForm:
+		//Пошук робіт за ПІБ керівника
+		case UI::MenuIndex::SearchByTeacher:
+		case UI::MenuIndex::SearchTeacherForm:
 			drawHeader("Пошук робіт за прізвищем керівника");
 			resetColor();
 			break;
-		case UI::SearchByStudent:
-		case UI::SearchStudentForm:
+		//Пошук робіт за ПІБ студента
+		case UI::MenuIndex::SearchByStudent:
+		case UI::MenuIndex::SearchStudentForm:
 			drawHeader("Пошук робіт за прізвищем автора");
 			resetColor();
 			break;
@@ -78,7 +93,7 @@ namespace UI {
 
 	void Controller::drawHeader(string title) {
 		placeCursorAt(xScreenOffset, yScreenOffset);
-		print(title, UI::LightBlue);
+		print(title, UI::ConsoleColor::LightBlue);
 	};
 
 	void Controller::drawVerticalNavigation(int x, int y, const char* arg, ...) {
@@ -88,10 +103,10 @@ namespace UI {
 		for (va_start(args, arg); arg != NULL; arg = va_arg(args, const char*)) {
 			placeCursorAt(x, y + i);
 			if (getNavigationVerticalIndex() == i) {
-				setColor(UI::Red);
+				setColor(UI::ConsoleColor::Red);
 			}
 			else {
-				setColor(UI::White);
+				setColor(UI::ConsoleColor::White);
 			}
 			cout << "|" << arg;
 			i++;
@@ -108,10 +123,10 @@ namespace UI {
 		for (va_start(args, arg); arg != NULL; arg = va_arg(args, const char*)) {
 			placeCursorAt(x + width, y);
 			if (getNavigationHorizontalIndex() == i) {
-				setColor(UI::Red);
+				setColor(UI::ConsoleColor::Red);
 			}
 			else {
-				setColor(UI::White);
+				setColor(UI::ConsoleColor::White);
 			}
 			cout << "|" << arg;
 			i++;
@@ -136,24 +151,27 @@ namespace UI {
 
 
 	void Controller::onNavigationItemSelect() {
-		if (selectedMenuIndex == UI::Home) {
+		if (selectedMenuIndex == UI::MenuIndex::Home) {
 			int index = getNavigationVerticalIndex();
 			selectedMenuIndex = UI::MenuIndex(index+1);
 		}
-		else if (selectedMenuIndex == UI::ManageDb) {
+		else if (selectedMenuIndex == UI::MenuIndex::ManageDb) {
 			selectedMenuIndex = UI::MenuIndex::AddRecordForm;
 		}
-		else if (selectedMenuIndex == UI::SearchByStudent) {
+		else if (selectedMenuIndex == UI::MenuIndex::SearchByStudent) {
 			selectedMenuIndex = UI::MenuIndex::SearchStudentForm;
 		}
-		else if (selectedMenuIndex == UI::SearchByTeacher) {
+		else if (selectedMenuIndex == UI::MenuIndex::SearchByTeacher) {
 			selectedMenuIndex = UI::MenuIndex::SearchTeacherForm;
+		}
+		else if (selectedMenuIndex == UI::MenuIndex::ManageKeywords) {
+			selectedMenuIndex = UI::MenuIndex::ManageKeywordsForm;
 		}
 	};
 
 	void Controller::onEscape() {
-		if (selectedMenuIndex != UI::Home) {
-			selectedMenuIndex = UI::Home;
+		if (selectedMenuIndex != UI::MenuIndex::Home) {
+			selectedMenuIndex = UI::MenuIndex::Home;
 		}
 	};
 }
